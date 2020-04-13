@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form (ngSubmit)="onSubmitForm()" [formGroup]="projectForm">
+
+          <div class="form-group">
+            <label for="projectName">Project Name</label>
+            <input name="projectName" type="text" class="form-control" placeholder="Project name" formControlName="name">
+            <span *ngIf="projectNameControl.invalid">
+              <span *ngIf="projectNameControl.errors.invalidName && projectNameControl.touched" class="help-block">{{projectNameControl.value}} is not valid !</span>
+              <span *ngIf="projectNameControl.errors.required && projectNameControl.touched" class="help-block">This field is required</span>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input name="email" type="email" class="form-control" placeholder="Email" formControlName="email">
+            <span *ngIf="emailControl.invalid && emailControl.touched" class="help-block">Enter a valid email address</span>
+          </div>
+
+          <div class="form-group">
+            <label for="projectStatus">Project Status</label>
+            <select name="projectStatus" class="form-control" formControlName="status">
+              <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+            </select>
+          </div>
+
+          <button class="btn btn-default" type="submit" [disabled]="!projectForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
